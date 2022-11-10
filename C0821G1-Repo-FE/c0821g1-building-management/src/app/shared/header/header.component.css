@@ -1,0 +1,90 @@
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  /*clear: both;*/
+
+}
+/*layout header-top*/
+.header-top{
+  background-color: #54b5bf;
+  text-align: right;
+  color: #eeb043;
+
+}
+
+/*layout header-bottom*/
+
+.header-bottom{
+  background-color: #d7e9ed;
+  border-top: 1px solid white;
+  /*position: relative;*/
+}
+
+/* Kiểu nút Dropdown */
+.dropbtn {
+  color: #ffd11a;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dùng trong <div> để định vị nội dung thả xuống */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/*/ * Nội dung thả xuống (Ẩn theo mặc định) * /*/
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #FAFAD2;
+  min-width: 160px;
+  z-index: 1;
+}
+
+/*/ * Liên kết bên trong danh sách thả xuống * /*/
+.dropdown-content a {
+  color: #ffd11a;
+  text-align: start;
+  text-decoration: none;
+  display: block;
+}
+
+/*/ * Hiển thị menu thả xuống khi di chuột * /*/
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.container-fluid .header-bottom .link{
+  padding-top: 25px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.container-fluid .header-bottom .link a:hover{
+  color: #e74c3c;
+}
+
+.container-fluid .header-bottom .menu{
+  padding-top: 25px;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: right;
+}
+
+ .header-bottom .menu .link{
+  display: inline;
+  text-align: right;
+}
+
+.header-bottom .link a{
+  color: #1b0f07;
+  text-decoration: none
+}
+.header-bottom .link a:hover{
+  color: #eb4d4b;
+}
+

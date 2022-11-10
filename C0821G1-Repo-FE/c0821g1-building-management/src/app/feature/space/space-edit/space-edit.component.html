@@ -1,0 +1,138 @@
+<div class=" gradient-custom form">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center "  style="font-size: 50px;font-weight: bold;color: #452D14;padding-top: 60px">Chỉnh sửa mặt bằng</h3>
+            <form [formGroup]="spaceEditForm" (ngSubmit)="editSpace()">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <label class="form-label select-label" for="floor" >Tầng <span class="error">(*)</span></label><br>
+                    <select class="select form-control-lg" style="width: 100%" id="floor" formControlName="floors" [compareWith]="compareFnFL">
+                      <option value=""></option>
+                      <option *ngFor="let fl of floorList" [ngValue]="fl">{{fl.floorName}}</option>
+                    </select>
+                  </div>
+
+                  <small style="color: red" *ngIf="spaceEditForm.controls.floors.hasError('required') && spaceEditForm.controls.floors.dirty">
+                    Tâng không được để trống.</small>
+
+                </div>
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <label class="form-label select-label" for="type">Loại mặt bằng <span class="error" >(*)</span></label><br>
+                    <select class="select form-control-lg" style="width: 100%" id="type" formControlName="spacesType" [compareWith]="compareFnST">
+                      <option value=""></option>
+                      <option *ngFor="let st of spaceTypeList" [ngValue]="st">{{st.spaceTypeName}}</option>
+                    </select>
+                    <small style="color: red" *ngIf="spaceEditForm.controls.spacesType.hasError('required') && spaceEditForm.controls.spacesType.touched">
+                      Loại mặt bằng không được để trống.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4 d-flex align-items-center">
+                  <div class="form-outline datepicker w-100">
+                    <label for="codeGround" class="form-label">Mã mặt bằng <span class="error">(*)</span></label>
+                    <input type="text" id="codeGround" class="form-control form-control-lg" formControlName="spaceCode"/>
+                    <small style="color: red" *ngIf="spaceEditForm.controls.spaceCode.hasError('required') && spaceEditForm.controls.spaceCode.touched">
+                      Mã mặt bằng không được để trống.</small>
+                    <small style="color: red" *ngIf="spaceEditForm.controls.spaceCode.hasError('pattern') && spaceEditForm.controls.spaceCode.dirty">
+                      Mã mặt bằng không đúng định dạng.</small>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline datepicker w-100">
+                    <label class="form-label select-label" for="status">Trạng thái <span class="error">(*)</span></label><br>
+                    <select class="select form-control-lg" style="width: 100%" id="status" formControlName="spaceStatus" [compareWith]="compareFnSS">
+                      <option value=""></option>
+                      <option *ngFor="let ss of spaceStatusList" [value]="ss">{{ss.spacerStatusName}}</option>
+                    </select>
+                    <small style="color: red" *ngIf="spaceEditForm.controls.spaceStatus.hasError('required') && spaceEditForm.controls.spaceStatus.touched">
+                      Trạng thái không được để trống.</small>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4 d-flex align-items-center">
+                  <div class="form-outline datepicker w-100">
+                    <label for="area" class="form-label">Diện tích (m2) <span class="error">(*)</span></label>
+                    <input type="text" id="area" class="form-control form-control-lg" formControlName="spaceArea"/>
+                    <small style="color: red" *ngIf="spaceEditForm.controls.spaceArea.hasError('required') && spaceEditForm.controls.spaceArea.touched">
+                      Diện tích không được để trống.</small>
+                    <small style="color: red" *ngIf="spaceEditForm.controls.spaceArea.hasError('pattern') && spaceEditForm.controls.spaceArea.dirty">
+                      Diện tích chỉ được nhập số.</small>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline datepicker w-100">
+                    <label for="price" class="form-label">Giá tiền (VND)</label>
+                    <input type="text" id="price" class="form-control form-control-lg" formControlName="spacePrice" [(ngModel)]="price"/>
+                    <small style="color: red" *ngIf="spaceEditForm.controls.spacePrice.hasError('required') && spaceEditForm.controls.spacePrice.dirty">
+                      Tiền chỉ được nhập số.</small>
+                    <pre *ngIf="price != null" class="d-flex justify-content-start">{{price|number:"."}}</pre>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+
+                  <div class="form-outline">
+                    <label class="form-label" for="fee">Phí quản lý (VND)</label>
+                    <input type="email" id="fee" class="form-control form-control-lg" formControlName="spaceManagerFee" [(ngModel)]="fee"/>
+                    <small style="color: red" *ngIf="spaceEditForm.controls.spaceManagerFee.hasError('required') && spaceEditForm.controls.spaceManagerFee.dirty">
+                      Tiền chỉ được nhập số.</small>
+                    <pre *ngIf="fee != null" class="d-flex justify-content-start">{{fee|number}}</pre>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+
+
+                </div>
+                <div class="row">
+
+                  <div class="col-md-12 mb-4 pb-2">
+
+                    <div class="form-outline">
+                      <label class="form-label" for="note">Chú thích </label>
+                      <textarea id="note" class="form-control form-control-lg" formControlName="spaceNote"></textarea>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-outline align-middle">
+                        <label class="form-label" >Hình ảnh</label>
+                        <input type="file" id="image" class="form-control form-control-lg"
+                               (change)="upload($event)" accept="*.png.jpg"/><br>
+                        <img class="form-control" id="files" [src]="spaceEditForm.controls.spaceImage.value" width="100" height="200">
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-end pt-3 mt-5">
+                  <button type="submit" class="edit-button button-radius btn-lg ms-2 me-3">Chỉnh sửa</button>
+                  <button type="reset" class="reset-button button-radius btn-lg ms-2 me-3">Đặt lại</button>
+                  <button type="reset" class="reset-button button-radius btn-lg ms-2 me-3" routerLink="/spaces/list">Đóng</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

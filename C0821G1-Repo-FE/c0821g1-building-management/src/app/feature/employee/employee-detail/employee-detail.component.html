@@ -1,0 +1,193 @@
+
+<form>
+  <div class="container-fluid">
+    <div class=" gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+              <div class="card-body p-4 p-md-5">
+                <h1 style="margin-top: 20px" class="mb-4 pb-2 pb-md-0 mb-md-5 text-center font-google-2">Chỉnh sửa thông tin cá nhân</h1>
+                <form [formGroup]="employeeForm">
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+
+                      <div class="form-outline">
+                        <label class="form-label" for="firstName">
+                          <h6 class="mb-2 pb-1">Tài khoản </h6>
+                        </label>
+<!--                        <input value="{{this.employee.employeeEmail}}" type="text" id="firstName"-->
+<!--                               class="form-control form-control-lg" disabled/>-->
+                        <input type="email" id="firstName" class="form-control form-control-lg" formControlName="employeeEmail" disabled/>
+                      </div>
+
+
+                    </div>
+                    <div class="col-md-6 mb-4">
+
+                      <div class="form-outline">
+                        <label class="form-label" for="Name">
+                          <h6 class="mb-2 pb-1">Họ và tên</h6>
+                        </label>
+<!--                        <input value="{{this.employee.employeeName}}" type="text" id="name"-->
+<!--                               class="form-control form-control-lg" disabled/>-->
+                        <input type="text" id="Name" class="form-control form-control-lg" formControlName="employeeName"/>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+
+                    <div class="col-md-6 mb-4">
+
+                      <div class="form-outline">
+                        <label class="form-label" for="Name">
+                          <h6 class="mb-2 pb-1">Ngày sinh</h6>
+                        </label>
+<!--                        <input value="{{this.employee.employeeDateOfBirth}}" type="text" id=""-->
+<!--                               class="form-control form-control-lg" disabled/>-->
+                        <input
+                          type="date"
+                          class="form-control form-control-lg"
+                          formControlName="employeeDateOfBirth"
+                          id="birthdayDate"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="Name">
+                          <h6 class="mb-2 pb-1">Địa chỉ</h6>
+                        </label>
+<!--                        <input value="{{this.employee.employeeAddress}}" type="text" id="a"-->
+<!--                               class="form-control form-control-lg" disabled/>-->
+                        <input type="email" id="address" class="form-control form-control-lg" formControlName="employeeAddress"/>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="phoneNumber"> </label>
+                        <h6 class="mb-2 pb-1">Số điện thoại </h6>
+<!--                        <input value="{{this.employee.employeePhone}}" type="tel" id="phoneNumber"-->
+<!--                               class="form-control form-control-lg" disabled/>-->
+                        <input type="tel" id="phoneNumber" class="form-control form-control-lg" formControlName="employeePhone" />
+
+                      </div>
+
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                      <div class="form-outline">
+                        <label class="form-label" for="email"></label>
+                        <h6 class="mb-2 pb-1">Email</h6>
+<!--                        <input value="{{this.employee.employeeEmail}}" type="text" id="email"-->
+<!--                               class="form-control form-control-lg" disabled/>-->
+                        <input type="email" id="email" class="form-control form-control-lg" formControlName="employeeEmail" disabled/>
+
+
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <h6 class="mb-2 pb-1">Giới tính: </h6>
+                      <div class="form-check form-check-inline">
+<!--                        <input-->
+<!--                          class="form-check-input"-->
+<!--                          type="radio"-->
+<!--                          name="inlineRadioOptions"-->
+<!--                          value="{{this.employee.employeeGender}}"-->
+<!--                          checked-->
+<!--                        />-->
+                        <input
+                          class="form-check-input form-control"
+                          type="radio"
+                          name="employeeGender"
+                          id="femaleGender"
+                          value="Nữ"
+                          checked
+                          formControlName="employeeGender"
+                        />
+                        <label class="form-check-label">Nam </label>
+                      </div>
+
+                      <div class="form-check form-check-inline">
+                        <label class="form-check-label">Nữ</label>
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="inlineRadioOptions"
+                          value="option2"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                  </div>
+                  <div class="row">
+                    <div class="col-2">
+
+                    </div>
+
+                    <div class="col-8">
+                      <!--                      <div class="form-outline align-middle text-center">-->
+                      <!--                        <label class="form-label" for="phoneNumber"></label>-->
+                      <!--                        <h5 class="mb-2 pb-1">Ảnh đại diện </h5>-->
+                      <!--                        <input type="file" id="image" class="form-control form-control-lg"/>-->
+                      <!--                        <img src="{{this.employee.employeeImage}}" class="img-fluid" alt="">-->
+                      <!--                      </div>-->
+
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="d-flex justify-content-start pt-3 mt-5">
+                        <a style="text-decoration: none;border: 1px solid" routerLink="/employee/update/{{employeeForm.controls.employeeId.value}}" type="button"
+                           class="add-button button-radius btn-lg ms-2 me-3">
+                          Chỉnh Sửa
+                        </a>
+                        <!--                        <a type="button" class="btn btn-light me-3 edit-button" routerLink="/employee/update/{{employee.employeeId}}">-->
+                        <!--                          <i class="fa-solid fa-pen"></i>-->
+                        <!--                        </a>-->
+
+                        <button routerLink="/employee/changePassword/{{employeeForm.controls.employeeId.value}}" type="button"
+                                class="add-button button-radius btn-lg ms-2 me-3">
+                          Đổi mật khẩu
+                        </button>
+                        <button routerLink="/employee/list"  type="button" class="add-button button-radius btn-lg ms-2 me-3">
+                          Thoát
+                        </button>
+                        <!--                        &lt;!&ndash;                        <a routerLink="user/update/1">update</a>&ndash;&gt;-->
+                        <!--                        <button routerLink="user/update/1" type="button"-->
+                        <!--                                class="reset-button button-radius btn-lg ms-2 me-3">-->
+                        <!--                          Đổi mật khẩu-->
+                        <!--                        </button>-->
+
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,32 @@
+<div class="modal-dialog">
+  <div class="modal-content border-white">
+    <div class="modal-header border-white">
+      <p class="modal-title fs-4 text-center text-success">Bạn có muốn xóa tầng lầu</p>
+    </div>
+    <div class="modal-body fs-6 fw-bold text-danger">
+      <table class="table border-white">
+        <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mã tầng lầu: </td>
+          <td>{{floor.floorCode}}</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Loại tầng lầu: </td>
+          <td>{{floor.floorsType.floorTypeName}}</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Trạng thái tầng lầu: </td>
+          <td>{{floor.floorsStatus.floorStatusName}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer border-white" >
+      <button type="button" class="btn btn-warning" (click)="onNoClick()">Hủy</button>
+      <button type="button" class="btn btn-danger" (click)="deleteFloorsById()">Xóa</button>
+    </div>
+  </div>
+</div>

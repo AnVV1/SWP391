@@ -1,0 +1,70 @@
+/*!*.font-google-2 {*!*/
+/*!*  font-family: 'Dancing Script', cursive;*!*/
+/*!*  color: #d6b915;*!*/
+/*!*  font-size: 60px*!*/
+/*!*}*!*/
+
+/*.pagination {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*}*/
+
+/*.pagination nav ul li a {*/
+/*  color: black;*/
+/*}*/
+
+/*.add-button {*/
+/*  background-color: mediumseagreen;*/
+/*  color: white;*/
+/*  border-radius: 5px;*/
+/*}*/
+
+/*.edit-button {*/
+/*  background-color: #d6b915;*/
+/*  border-radius: 5px;*/
+/*}*/
+
+/*.delete-button {*/
+/*  background-color: #de6666;*/
+/*  border-radius: 5px;*/
+/*  color: white;*/
+/*}*/
+
+/*.text-overflow {*/
+/*  white-space: nowrap;*/
+/*  overflow: hidden;*/
+/*}*/
+
+/*.body-list {*/
+/*  background-image: url(https://i1-dulich.vnecdn.net/2021/03/04/1-1614826817.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=zoSoMv1tfcFUn5nDxYcW1A);*/
+/*  background-repeat: no-repeat;*/
+/*  background-position: center center;*/
+/*  object-fit: contain;*/
+/*  -webkit-background-size: cover;*/
+/*  -moz-background-size: cover;*/
+/*  -o-background-size: cover;*/
+/*  background-size: cover;*/
+/*  flex: 1;*/
+/*}*/
+
+/*th {*/
+/*  text-align: center;*/
+/*}*/
+
+/*body {*/
+/*  !*background-image: url(https://i1-dulich.vnecdn.net/2021/03/04/1-1614826817.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=zoSoMv1tfcFUn5nDxYcW1A);*!*/
+/*  background-repeat: no-repeat;*/
+/*  background-size: 1800px 1100px;*/
+/*}*/
+/*.content {*/
+/*  background-image: url(https://i1-dulich.vnecdn.net/2021/03/04/1-1614826817.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=zoSoMv1tfcFUn5nDxYcW1A);*/
+/*  background-repeat: no-repeat;*/
+/*  background-position: center center;*/
+/*  object-fit: contain;*/
+/*  -webkit-background-size: cover;*/
+/*  -moz-background-size: cover;*/
+/*  -o-background-size: cover;*/
+/*  background-size: cover;*/
+/*  flex: 1;*/
+/*}*/

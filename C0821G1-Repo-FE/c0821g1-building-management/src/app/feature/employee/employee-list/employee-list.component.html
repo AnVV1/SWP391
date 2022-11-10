@@ -1,0 +1,135 @@
+<div class="content-container">
+  <div class="container-fluid">
+    <h2 class="text-center  m-5 font-google-2 " style="font-size: 50px;font-weight: bold;color: #452D14">Danh Sách Nhân Viên</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <button type="button" routerLink="/employee/create" class="add-button btn-lg"><i
+            class="fa-solid fa-plus me-lg-2"></i>Tạo mới
+          </button>
+        </div>
+        <div class="col-9">
+          <form #myNgForm="ngForm" (ngSubmit)="search()">
+            <div class=" search row d-flex justify-content-end mb-4">
+              <div class="form-group" style="text-align: center; width: 150px">
+                <input id="customerName" [(ngModel)]="employeeName" [ngModelOptions]="{standalone: true}"
+                       class="form-control" type="text" placeholder="Họ Tên">
+              </div>
+              <div class="form-group" style="text-align: right; width: 150px">
+                <div style="text-align: center">
+                  <input placeholder="Ngày Sinh" class="textbox-n form-control" type="text"
+                         [(ngModel)]="employeeDateOfBirth" [ngModelOptions]="{standalone: true}"
+                         onfocus="(this.type='date')"
+                         onblur="(this.type='text')" id="startDate"
+                         aria-describedby="passwordHelpInline"/>
+                </div>
+              </div>
+              <div class="form-group" style="text-align: right; width: 150px">
+                <div style="text-align: center">
+                </div>
+                <div>
+                  <input [(ngModel)]="employeeEmail" [ngModelOptions]="{standalone: true}"
+                         type="text" class="form-control" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group" style="text-align: right; width: 150px">
+                <input [(ngModel)]="employeeAddress" [ngModelOptions]="{standalone: true}"
+                       type="text" class="form-control" placeholder="Địa Chỉ">
+              </div>
+              <div class="form-group" style="text-align: right; width: 150px">
+                <button (click)="onSubmit()" class="btn btn-light btn-outline-success" style="border-radius: 5px"><i
+                  class="fa-solid fa-magnifying-glass"></i>Tìm Kiếm
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <!--          <h4 class="text-start">-->
+          <!--            <button type="button" class="add-button btn-lg"><i class="fa-solid fa-plus me-2 "></i>Tạo mới-->
+          <!--            </button>-->
+          <!--            <button type="button" class="delete-button btn-lg ">Xóa tất cả</button>-->
+          <!--          </h4>-->
+        </div>
+        <ng-container *ngIf="message !== '';else elseBlock">
+          <div class="bg-light">
+            <h1 style="color: red; text-align: center; width: 100%; margin-top: 50px">{{message}}</h1>
+          </div>
+        </ng-container>
+        <ng-template #elseBlock>
+          <table class="table table-hover bg-light">
+            <thead class="text-center font-google-1 fs-5 text-overflow align-middle"
+                   style="background-color: #efb578">
+            <tr style="color: #452d14">
+              <th scope="col" style="text-align: left">Stt</th>
+              <th scope="col" style="text-align: left">Mã nhân viên</th>
+              <th scope="col" style="text-align: left">Họ tên</th>
+              <th scope="col" style="text-align: left">Ngày sinh</th>
+              <th scope="col" style="text-align: left">Giới tính</th>
+              <th scope="col" style="text-align: left">Địa chỉ</th>
+              <th scope="col" style="text-align: left">Email</th>
+              <th scope="col" style="text-align: left">Chức năng</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let employee of employees">
+              <td>{{employee.employeeId}}</td>
+              <td>{{employee.employeeCode}}</td>
+              <td>{{employee.employeeName}}</td>
+              <td>{{employee.employeeDateOfBirth}}</td>
+              <td>{{employee.employeeGender}}</td>
+              <td>{{employee.employeeAddress}}</td>
+              <td>{{employee.employeeEmail}}</td>
+              <td class="text-center">
+                <a type="button" class="btn btn-light me-3 edit-button"
+                   routerLink="/employee/update/{{employee.employeeId}}">
+                  <i class="fa-solid fa-pen"></i>
+                </a>
+                <!--            <a type="button" *ngIf="checkDeleteFlag == false" class="btn btn-light delete-button" (click)="openDialog(employee.employeeId)">-->
+                <!--              <i class="fa-solid fa-trash-can"></i>-->
+                <!--            </a>-->
+                <button [disabled]="checkDeleteFlag == true" type="submit" class="btn btn-light delete-button"
+                        (click)="openDialog(employee.employeeId)">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="me-5 pe-4 ">
+            <ul class="pagination pagination-sm justify-content-end  pagination-lg" style="margin:20px 0">
+              <div *ngIf="this.page > 0 then previous"></div>
+              <ng-template #previous>
+                <li class="page-item">
+                  <button
+                    (click)="previousClick(1)" class="page-link" type="button">Trang trước
+                  </button>
+                </li>
+              </ng-template>
+              <li class="page-item">
+                <input class="page-link" type="number" value="1" min="1" [max]="totalPages"
+                       placeholder="{{totalPages}}" aria-label="Username" [value]="page + 1"
+                       aria-describedby="basic-addon1"
+                       (change)="findPaginnation($event.target.value)">
+              </li>
+              <li class="page-item ">
+                <span class="input-group-text page-link">{{page + 1}}/{{totalPages}}</span>
+              </li>
+              <div *ngIf="this.page  < this.totalPages-1 then nexts "></div>
+              <ng-template #nexts>
+                <li class="page-item">
+                  <button (click)="nextClick(1)" class="page-link" type="button">Trang sau</button>
+                </li>
+              </ng-template>
+            </ul>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+

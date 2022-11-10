@@ -1,0 +1,15 @@
+/*footer*/
+
+.footer{
+  background-color: #3d3d3d;
+  color: white;
+  margin-top: 1px;
+  padding-bottom: 1px;
+  z-index: 100;
+}
+.footer .container .row .contact{
+  text-align: left;
+}
+.footer .container .row .contact a svg{
+  color: #eeb043;
+}

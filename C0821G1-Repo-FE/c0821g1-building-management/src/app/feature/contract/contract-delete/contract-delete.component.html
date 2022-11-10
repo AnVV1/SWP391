@@ -1,0 +1,12 @@
+
+<h2 class="modal-title fs-4 fw-bold border-white">Xác nhận xóa hợp đồng</h2>
+<p class="my-3">Bạn có chắc muốn xóa hợp đồng của khách hàng <span class="text-danger fw-bold ">{{contract.customer.customerName}}</span> ra khỏi danh sách không ?
+  <br>
+  <span>Lưu ý : thao tác này không thể hoàn tác !!!</span></p>
+
+<div class="d-flex flex-row-reverse border-white">
+   <span>
+     <button  [mat-dialog-close] class="btn btn-secondary me-3">Thoát</button>
+      <button (click)="deleteContract()" class="btn btn-danger">Xóa</button>
+  </span>
+</div>

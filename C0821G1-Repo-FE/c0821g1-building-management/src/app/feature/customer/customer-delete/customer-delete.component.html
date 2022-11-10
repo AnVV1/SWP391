@@ -1,0 +1,34 @@
+<!--<p>customer-delete works!</p>-->
+<div class="modal-dialog">
+  <div class="modal-content border-white">
+    <div class="modal-header border-white">
+      <p class="modal-title fs-4 text-center text-success border-white">Bạn có muốn xóa khách hàng</p>
+    </div>
+    <div class="modal-body fs-6 fw-bold">
+      <div class="row mb-lg-2">
+        <div class="col-lg-4 ">
+          Tên Khách Hàng:
+        </div>
+        <div class="col-lg-8 fs-6 fw-bold text-danger">
+          {{customer.customerName}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          Mã Khách Hàng:
+        </div>
+        <div class="col-lg-8 fs-6 fw-bold text-danger">
+          {{customer.customerCode}}
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer border-white">
+      <button type="button" class="btn btn-warning" (click)=" onNoClick()">Hủy</button>
+      <button type="button" class="btn btn-danger" (click)="deleteCustomer()">Xóa</button>
+    </div>
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,151 @@
+<div class="content-container">
+  <div class="container-fluid">
+    <h2 class="text-center  m-5 font-google-2 " style="font-size: 50px;font-weight: bold;color: #452D14">Danh Sách Mặt Bằng</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="search row justify-content-around align-items-center mb-4 text-right float-right">
+            <div class="col-xl-2 col-md-3 form-group" style="text-align: center">
+              <input id="floorName" #floorName class="form-control" type="text" placeholder="Theo tên tầng"
+                     style="font-size: 15px">
+            </div>
+            <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
+              <div style="text-align: center">
+                <input id="spaceCode" #spaceCode type="text" class="form-control" placeholder="Theo mã mặt bằng"
+                       style="font-size: 15px">
+              </div>
+            </div>
+            <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
+              <div style="text-align: center">
+              </div>
+              <div>
+                <input id="spaceArea" #spaceArea type="text" class="form-control" placeholder="Theo diện tích"
+                       style="font-size: 15px">
+              </div>
+            </div>
+            <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
+              <input type="text" id="spaceType" #spaceType class="form-control" placeholder="Theo loại mặt bằng"
+                     style="font-size: 15px">
+            </div>
+            <div class="col-xl-2 col-md-3 form-group form-control-lg" style="text-align: center">
+              <button class="btn btn-light btn-outline-success" style="border-radius: 5px"
+                      (click)="search(floorName.value, spaceCode.value, spaceArea.value, spaceType.value, spaceStatus.value)">
+                <i
+                  class="fa-solid fa-magnifying-glass fa-2x" style="font-size: 15px"></i>Tìm Kiếm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 5px">
+        <div class="col-12" >
+
+            <button type="button" class="add-button btn me-lg-1 "
+                    style="height: 34px!important;vertical-align: middle!important; margin-left: 10px" routerLink="/spaces/create"><i
+              class="fa-solid fa-plus"></i>Tạo mới
+            </button>
+            <select id="spaceStatus" #spaceStatus type="button" class="btn btn-danger dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+              <option class="dropdown-item" value="" style="height: 20px">Tất cả trạng thái</option>
+              <option class="dropdown-item" value="Chưa vào ở">Chưa vào ở</option>
+              <option class="dropdown-item" value="Đã vào ở">Đã vào ở</option>
+              <option class="dropdown-item" value="Chưa bàn giao">Chưa bàn giao</option>
+              <option class="dropdown-item" value="Đang sửa">Đang sửa chữa</option>
+            </select>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <!--          <h4 class="text-start">-->
+          <!--            <button type="button" class="add-button btn-lg"><i class="fa-solid fa-plus me-2 "></i>Tạo mới-->
+          <!--            </button>-->
+          <!--            <button type="button" class="delete-button btn-lg ">Xóa tất cả</button>-->
+          <!--          </h4>-->
+        </div>
+        <table class=" table table-hover bg-light" style="text-align: center">
+          <thead class="text-center "
+                 style="background-color: #efb578; white-space: nowrap; overflow: hidden;">
+          <tr style="color: #452d14">
+            <th scope="col">STT</th>
+            <th scope="col">Tên tầng</th>
+            <th scope="col">Mã mặt bằng</th>
+            <th scope="col">Loại mặt bằng</th>
+            <th scope="col">Diện tích(m<sup>2</sup>)</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Giá bán(VND)</th>
+            <th scope="col">Phí quản lý</th>
+            <th scope="col" style="">Chức năng</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let space of spaceList | slice: (page-1) * pageSize : page * pageSize; let  i= index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{space.floorName}}</td>
+            <td>{{space.spaceCode}}</td>
+            <td>{{space.spaceTypeName}}</td>
+            <td>{{space.spaceArea}}m<sup>2</sup></td>
+            <td>{{space.spaceStatusName}}</td>
+            <td>{{space.spacePrice | number:'1.0':'en-US' }}</td>
+            <td>{{space.spaceManagerFee | number:'1.0':'en-US' }}</td>
+            <td>
+              <button type="button" class="btn btn-light me-3 edit-button"
+                      [routerLink]="['/spaces/edit/',space.spaceId]">
+                <i class="fa-solid fa-pen"></i>
+
+              </button>
+              <button type="button" class="btn btn-light delete-button " data-toggle="modal"
+                      data-target="#exampleModal"
+                      (click)="openDialog(space.spaceId)">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="clearfix text-center">
+          <div class="align-content-center">
+            <div class="me-5 pe-4 ">
+              <ul class="pagination pagination-sm justify-content-end pagination-lg" style="margin:20px 0">
+                <div *ngIf="page > 1 then previous"></div>
+                <ng-template #previous>
+                  <li class="page-item">
+                    <button
+                      (click)="previousClick()" class="page-link" type="button">Trang trước
+                    </button>
+                  </li>
+                </ng-template>
+
+                <li class="page-item">
+                  <input class="page-link" type="number" value="1" min="1" [max]="totalPages"
+                         placeholder="{{totalPages}}" aria-label="Username" [value]="page"
+                         aria-describedby="basic-addon1"
+                         (change)="selectPage($event)">
+                </li>
+                <li class="page-item">
+                  <span class="page-link">{{page}}/{{totalPages}}</span>
+                </li>
+                <div *ngIf="this.page  < this.totalPages then next"></div>
+                <ng-template #next>
+                  <li class="page-item">
+                    <button (click)="nextClick()" class="page-link" type="button">Trang sau</button>
+                  </li>
+                </ng-template>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-bootstrap-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="default"
+  color="#fff"
+  type="border"
+  loadingText="Đang tải dữ liệu..."
+>
+</ngx-bootstrap-spinner>

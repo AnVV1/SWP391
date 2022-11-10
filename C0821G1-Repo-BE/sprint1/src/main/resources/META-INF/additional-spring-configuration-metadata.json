@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "secretPsw",
+      "type": "java.lang.String",
+      "description": "Description for secretPsw."
+  }
+] }

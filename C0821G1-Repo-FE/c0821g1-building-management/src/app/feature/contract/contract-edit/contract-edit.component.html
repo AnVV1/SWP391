@@ -1,0 +1,249 @@
+<div class="row">
+  <div class="col-12">
+    <div class="container-fluid">
+      <div class=" gradient-custom">
+        <div class="container py-5 h-100">
+          <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+              <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                <div class="card-body p-4 p-md-5 ">
+                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center " style="font-size: 50px;font-weight: bold;color: #452D14;padding-top: 60px"> Chỉnh sửa hợp đồng</h3>
+                  <form [formGroup]="contractForm" (ngSubmit)="updateContract(contractForm.controls.contractId.value)"
+                        *ngIf="contractForm">
+                    <div class="row">
+                      <div class="col-md-6 mb-6">
+
+                        <div class="form-outline">
+                          <!--                                            <label class="form-label" for="firstName">Mặt bằng<span-->
+                          <!--                                                    class="error">(*)</span></label>-->
+                          <!--                                            <input type="text" id="firstName" class="form-control form-control-lg"/>-->
+                          <label for="select2" class="form-label select-label">Mặt bằng<span
+                            class="error">(*)</span></label>
+                          <br>
+                          <select id="select2" class="form-control form-control-lg" aria-label="Default select example"
+                                  formControlName="spaceId">
+                            <option *ngFor="let space of spaces" [value]="space.spaceId">{{space.spaceCode}}</option>
+                          </select>
+                        </div>
+                        <small class="error" *ngIf="contractForm.get('spaceId').hasError('required')
+                        && contractForm.get('spaceId').touched">Mặt bằng không được để trống!</small>
+                        <!--                                        <p class="error">Mặt bằng không được để trống</p>-->
+
+                      </div>
+                      <div class="col-md-6 mb-6">
+
+                        <div class="form-outline">
+                          <label class="form-label" for="select4">Họ tên khách hàng<span
+                            class="error">(*)</span></label>
+                          <!--                          <input value="Văn Đông" type="text" id="lastName"-->
+                          <!--                                 class="form-control form-control-lg"/>-->
+                          <select id="select4" class="form-control form-control-lg" aria-label="Default select example"
+                                  formControlName="customerId">
+                            <option *ngFor="let customer of customers"
+                                    [value]="customer.customerId">{{customer.customerName}}</option>
+                          </select>
+                        </div>
+                        <small class="error" *ngIf="contractForm.get('customerId').hasError('required')
+                        && contractForm.get('customerId').touched">Khách hàng phải được chọn!</small>
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="lastName2">Ngày bắt đầu thuê<span
+                            class="error">(*)</span></label>
+                          <input type="date" id="lastName2"
+                                 class="form-control form-control-lg" formControlName="contractDateStart"
+                                 (change)="checkDate1(contractForm.controls.contractDateStart.value,contractForm.controls.contractDateEnd.value)"/>
+                        </div>
+                        <small class="error" *ngIf="contractForm.get('contractDateStart')
+                        .hasError('required')&& contractForm.get('contractDateStart').touched">Ngày bắt đầu không được
+                          để trống!</small>
+
+                      </div>
+
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="lastName3">Ngày kết thúc thuê<span
+                            class="error">(*)</span></label>
+                          <input type="date" id="lastName3" name="date"
+                                 class="form-control form-control-lg" formControlName="contractDateEnd"
+                                 (change)="checkDate1(contractForm.controls.contractDateStart.value,contractForm.controls.contractDateEnd.value)"/>
+                        </div>
+                        <small class="error" *ngIf="contractForm.get('contractDateEnd')
+                        .hasError('required')&& contractForm.get('contractDateEnd').touched">Ngày kết thúc không được
+                          để trống!</small>
+                        <small class="error" *ngIf="checkDate == true">Ngày kết thúc phải sau ngày hiện tại!</small>
+                      </div>
+
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline datepicker w-100">
+                          <label for="birthdayDate" class="form-label">Kì hạn (tháng)<span
+                            class="error"> (*)</span></label>
+                          <input
+                            type="number"
+                            class="form-control form-control-lg"
+                            id="birthdayDate"
+                            formControlName="contractExpired" readonly
+                          />
+                        </div>
+                        <small class="error" *ngIf="contractForm.get('contractExpired')
+                        .hasError('required')&&
+                        (contractForm.get('contractExpired').touched ||contractForm.get('contractExpired').dirty )">Kì
+                          hạn không được để trống!</small>
+
+                      </div>
+
+                      <div class="col-md-6 mb-4 pb-2">
+
+                        <div class="form-outline">
+                          <label class="form-label" for="emailAddress">Giá tiền mỗi tháng(VND)
+                            <span
+                              class="error">(*)</span></label>
+                          <input type="number" id="emailAddress" value="12.000.000"
+                                 class="form-control form-control-lg" formControlName="price"/>
+                        </div>
+                        <small class="error" *ngIf="contractForm.get('price')
+                        .hasError('required')&&
+                         (contractForm.get('price').touched ||contractForm.get('price').dirty )">Giá tiền không được để
+                          trống!</small>
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline datepicker w-100">
+                          <label for="birthdayDate1" class="form-label">Tổng tiền(VND)<span
+                            class="error"> (*)</span></label>
+                          <input
+                            type="number"
+                            value="30.000.000"
+                            class="form-control form-control-lg"
+                            id="birthdayDate1"
+                            formControlName="contractTotal" readonly
+                          />
+                        </div>
+                        <small class="error" *ngIf="contractForm.get('contractTotal')
+                        .hasError('required')&&
+                         (contractForm.get('contractTotal').touched ||contractForm.get('contractTotal').dirty )">Tổng
+                          tiền không được để trống!</small>
+                      </div>
+
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline">
+                          <label class="form-label" for="emailAddress1">Tiền cọc(VND)
+                            <span
+                              class="error">(*)</span></label>
+                          <input type="number" id="emailAddress1"
+                                 class="form-control form-control-lg" formControlName="contractDeposit"/>
+                        </div>
+                        <small class="error" *ngIf="contractForm.get('contractDeposit')
+                        .hasError('required')&&
+                         (contractForm.get('contractDeposit').touched ||contractForm.get('contractDeposit').dirty )">Tiền
+                          cọc không được để trống!</small>
+                      </div>
+
+                    </div>
+                    <div class="row">
+
+                      <div class="col-6">
+
+                        <div class="form-outline">
+                          <label class="form-label" for="emailAddress2">Mã số thuế
+                            <span
+                              class="error">(*)</span></label>
+                          <input type="text" id="emailAddress2"
+                                 class="form-control form-control-lg" formControlName="contractTaxCode"/>
+                        </div>
+                        <small class="error" *ngIf="contractForm.get('contractTaxCode')
+                        .hasError('required')&&
+                         (contractForm.get('contractTaxCode').touched ||contractForm.get('contractTaxCode').dirty )">Mã
+                          số thuế không được để trống!</small>
+                      </div>
+                      <div class="col-6">
+
+                        <div class="form-outline">
+                          <label class="form-label" for="emailAddress12">Mã hợp đồng
+                            <span
+                              class="error">(*)</span></label>
+                          <input type="text" id="emailAddress12"
+                                 class="form-control form-control-lg" formControlName="contractCode"/>
+                        </div>
+                        <small class="error" *ngIf="contractForm.get('contractCode')
+                        .hasError('required')&&
+                         (contractForm.get('contractCode').touched ||contractForm.get('contractCode').dirty )">Mã
+                          hợp đồng không được để trống!</small>
+
+                        <small class="error" *ngIf="contractForm.get('contractCode')
+                        .hasError('pattern')&& contractForm.get('contractCode').dirty">Mã hợp đồng không hợp lệ : KH-1233,KH-0123,...!</small>
+
+                        <small class="error" *ngIf="checkCode == true">Mã hợp đồng đã tồn tại!</small>
+
+                      </div>
+                    </div>
+
+                    <div class="row mt-4">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label class="form-label" for="exampleFormControlTextarea1">Nội dung hợp đồng <span
+                            class="error">(*)</span></label>
+                          <textarea style="height: 133px" class="form-control"
+                                    id="exampleFormControlTextarea1"
+                                    rows="3" formControlName="contractContent"></textarea>
+                        </div>
+                        <small class="error" *ngIf="contractForm.get('contractContent')
+                        .hasError('required')&&
+                         (contractForm.get('contractContent').touched ||contractForm.get('contractContent').dirty )">Nội
+                          dung không được để trống!</small>
+                        <small class="error" *ngIf="contractForm.get('contractContent')
+                        .hasError('minlength')&& contractForm.get('contractContent').dirty">Nội dung phải trên 10 kí
+                          tự!</small>
+
+                      </div>
+                    </div>
+
+                    <div class="row mt-4">
+                      <div class="col-6">
+                        <div class="col-md-12 position-relative field">
+                          <label class="form-label">Hình ảnh hợp đồng<span
+                            class="error">(*)</span></label>
+                          <img class="form-control" [src]="contractForm.controls.contractImageUrl.value" alt="">
+                          <input type="file" class="form-control" id="files"  (change)="showPreview($event)">
+                        </div>
+                      </div>
+                      <div class="col-6"></div>
+                    </div>
+                    <div class="d-flex justify-content-end pt-3 mt-5">
+                      <button class="edit-button button-radius btn-lg ms-2 me-3" [disabled]="checkDate == true">
+                        Chỉnh sửa
+                      </button>
+                      <button (click)="cancel()" type="button" class="reset-button button-radius btn-lg ms-2 me-3">
+                        Hủy bỏ
+                      </button>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-bootstrap-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="default"
+  color="#fff"
+  type="border"
+  loadingText="Đang tải dữ liệu..."
+>
+</ngx-bootstrap-spinner>
+
+

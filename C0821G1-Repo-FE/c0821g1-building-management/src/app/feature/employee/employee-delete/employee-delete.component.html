@@ -1,0 +1,32 @@
+<div class="modal-dialog">
+  <div class="modal-content border-white">
+    <div class="modal-header border-white">
+      <p class="modal-title fs-4 text-center text-success border-white">Bạn có muốn xóa nhân viên</p>
+    </div>
+    <div class="modal-body fs-6 fw-bold text-danger border-white">
+      <table class="table border-white">
+        <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Tên: </td>
+          <td>{{employee.employeeName}}</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Mã Nhân Viên: </td>
+          <td>{{employee.employeeCode}}</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Email: </td>
+          <td>{{employee.employeeEmail}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer border-white">
+      <button type="button" class="btn btn-warning" (click)=" onNoClick()">Hủy</button>
+      <button type="button" class="btn btn-danger" (click)="deleteEmployee()">Xóa</button>
+    </div>
+  </div>
+</div>

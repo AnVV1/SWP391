@@ -1,0 +1,297 @@
+<div class="row">
+  <a routerLink="/home">Trang chủ</a>
+  <a routerLink="/contract/list">List</a>
+  <div class="col-12">
+    <div class="container-fluid">
+      <div class=" gradient-custom ">
+        <div class="container py-5 h-100">
+          <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+              <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                <div class="card-body p-4 p-md-5 ">
+                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center "
+                      style="font-size: 50px;font-weight: bold;color: #452D14">Thêm mới hợp đồng</h3>
+                  <form [formGroup]="contractsForm" (ngSubmit)="submit()">
+                    <div class="row">
+                      <div class="col-md-6 mb-6">
+
+                        <input type="text" formControlName="employeeId" value="{{employeeId}}" hidden/>
+
+                        <div class="form-outline">
+                          <!--                          <label class="form-label" for="firstName">Mặt bằng<span-->
+                          <!--                            class="error"> (*)</span></label>-->
+                          <!--                          &lt;!&ndash;                          <input type="text" id="firstName" class="form-control form-control-lg"/>&ndash;&gt;-->
+                          <!--                          <select id="firstName" class="form-select" aria-label="Default select example"-->
+                          <!--                                  formControlName="spaceId">-->
+                          <!--                            &lt;!&ndash;                            <option [ngValue]="null">&#45;&#45;Chọn&#45;&#45;</option>&ndash;&gt;-->
+                          <!--                            <option *ngFor="let space of spaces" [ngValue]="space.spaceId">{{space.spaceCode}}</option>-->
+                          <!--                          </select>-->
+
+
+                          <label for="exampleDataList" class="form-label">Mặt bằng<span
+                            class="error"> (*)</span></label>
+                          <input (change)="code()" formControlName="spaceId" class="form-control form-control-lg"
+                                 list="datalistOptions"
+                                 id="exampleDataList" placeholder="--Chọn--">
+                          <datalist ngDefaultControl id="datalistOptions" formControlName="spaceId">
+                            <option (change)="code()" *ngFor="let space of spaces"
+                                    [value]="space.spaceId">{{space.spaceCode}}
+                          </datalist>
+                          <p *ngIf="spaceCode !=null "><b><i>{{spaceCode}}</i></b></p>
+
+                        </div>
+                        <small class="error" *ngIf="contractsForm.get('spaceId').hasError('required')
+                        && contractsForm.get('spaceId').touched">Mặt bằng phải được chọn</small>
+                      </div>
+                      <div class="col-md-6 mb-6">
+
+                        <div class="form-outline">
+                          <!--                          <label class="form-label" for="customerName">Họ tên khách hàng<span-->
+                          <!--                            class="error"> (*)</span></label>-->
+                          <!--                          <select id="customerName" class="form-select" aria-label="Default select example"-->
+                          <!--                                  formControlName="customerId">-->
+                          <!--                            <option *ngFor="let customer of customers"-->
+                          <!--                                    [value]="customer.customerId">{{customer.customerName}}</option>-->
+                          <!--                          </select>-->
+
+                          <label for="exampleDataList1" class="form-label">Họ tên khách hàng<span
+                            class="error">(*)</span></label>
+                          <input formControlName="customerId" class="form-control form-control-lg"
+                                 list="datalistOptions1"
+                                 id="exampleDataList1" placeholder="--Chọn--" (change)="name()">
+                          <datalist ngDefaultControl id="datalistOptions1" formControlName="customerId">
+                            <option
+                              (change)="name()"
+                              *ngFor
+                                ="let
+                            customer of customers"
+                              [value]="customer.customerId">{{ customer.customerName + '-' + customer.customerIdentifyNumber}}
+                          </datalist>
+                          <p *ngIf="name1 !=null "><b><i>{{name1 + '-' + code1}}</i></b></p>
+
+                          <small class="error" *ngIf="contractsForm.get('customerId').hasError('required')
+                        && contractsForm.get('customerId').touched">Khách hàng phải được chọn</small>
+
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="lastName2">Ngày bắt đầu thuê<span
+                            class="error"> (*)</span></label>
+                          <input type="date"
+                                 id="lastName2"
+                                 class="form-control form-control-lg"
+                                 formControlName="contractDateStart" [(ngModel)]="dateStart"
+                                 (change)="checkDate1(contractsForm.controls.contractDateStart.value
+,contractsForm.controls.contractDateEnd.value
+,contractsForm.controls.price.value)"/>
+                        </div>
+                        <small class="error" *ngIf="contractsForm.get('contractDateStart')
+                        .hasError('required')&& contractsForm.get('contractDateStart').touched">Ngày bắt đầu không được
+                          để trống</small>
+
+                      </div>
+
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="lastName3">Ngày kết thúc thuê<span
+                            class="error"> (*)</span></label>
+                          <input type="date" id="lastName3" class="form-control form-control-lg"
+                                 formControlName="contractDateEnd"
+                                 (change)="checkDate1(contractsForm.controls.contractDateStart.value
+,contractsForm.controls.contractDateEnd.value
+,contractsForm.controls.price.value)"
+                          />
+                        </div>
+                        <small class="error" *ngIf="contractsForm.get('contractDateEnd')
+                        .hasError('required')&& contractsForm.get('contractDateEnd').touched">Ngày kết thúc không được
+                          để trống</small>
+                        <small class="error" *ngIf="checkDate == true">Ngày kết thúc phải sau ngày hiện tại!</small>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline datepicker w-100">
+                          <label for="birthdayDate" class="form-label">Kì hạn (tháng)<span
+                            class="error"> (*)</span></label>
+                          <input
+                            type="number"
+                            class="form-control form-control-lg"
+                            id="birthdayDate"
+                            formControlName="contractExpired" readonly
+                          />
+                        </div>
+                        <small class="error" *ngIf="contractsForm.get('contractExpired')
+                        .hasError('required')&& contractsForm.get('contractExpired').touched">Kì hạn không được để
+                          trống</small>
+
+                      </div>
+
+                      <div class="col-md-6 mb-4 pb-2">
+
+                        <div class="form-outline">
+                          <label class="form-label" for="emailAddress">Giá tiền mỗi tháng(VND)
+                            <span
+                              class="error"> (*)</span></label>
+                          <input type="number" id="emailAddress"
+                                 class="form-control form-control-lg" formControlName="price"
+                                 (change)="checkDate1(contractsForm.controls.contractDateStart.value
+,contractsForm.controls.contractDateEnd.value
+,contractsForm.controls.price.value)"/>
+
+                          <pre *ngIf="price != null"
+                               class="d-flex justify-content-start">{{price|currency:"VND":"symbol"}}</pre>
+                        </div>
+                        <small class="error" *ngIf="contractsForm.get('price')
+                        .hasError('required')&& contractsForm.get('price').touched">Giá tiền không được để trống</small>
+
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline datepicker w-100">
+                          <label for="birthdayDate1" class="form-label">Tổng tiền(VND)<span
+                            class="error"> (*)</span></label>
+                          <input
+                            type="number"
+                            class="form-control form-control-lg"
+                            id="birthdayDate1"
+                            formControlName="contractTotal" readonly
+                          />
+                          <pre *ngIf="totalPrice != null"
+                               class="d-flex justify-content-start">{{totalPrice|currency:"VND":"symbol"}}</pre>
+
+                        </div>
+                        <small class="error" *ngIf="contractsForm.get('contractTotal')
+                        .hasError('required')&& contractsForm.get('contractTotal').touched">Tổng tiền không được để
+                          trống</small>
+
+                      </div>
+
+                      <div class="col-md-6 mb-4 pb-2">
+
+                        <div class="form-outline">
+                          <label class="form-label" for="emailAddress1">Tiền cọc(VND)
+                            <span
+                              class="error"> (*)</span></label>
+                          <input type="number" id="emailAddress1"
+                                 class="form-control form-control-lg" formControlName="contractDeposit"
+                                 (change)="changeDeposit()"/>
+                        </div>
+
+                        <pre *ngIf="deposit != null"
+                             class="d-flex justify-content-start">{{deposit|currency:"VND":"symbol"}}</pre>
+                        <small class="error" *ngIf="contractsForm.get('contractDeposit')
+                        .hasError('required')&& contractsForm.get('contractDeposit').touched">Tiền cọc không được để
+                          trống</small>
+
+                      </div>
+                    </div>
+                    <div class="row">
+
+                      <div class="col-6">
+
+                        <div class="form-outline">
+                          <label class="form-label" for="emailAddress2">Mã số thuế
+                            <span
+                              class="error"> (*)</span></label>
+                          <input type="email" id="emailAddress2"
+                                 class="form-control form-control-lg" formControlName="contractTaxCode"/>
+                        </div>
+                        <small class="error" *ngIf="contractsForm.get('contractTaxCode')
+                        .hasError('required')&& contractsForm.get('contractTaxCode').touched">Mã số thuế không được để
+                          trống</small>
+                        <small class="error" *ngIf="contractsForm.get('contractTaxCode')
+                        .hasError('pattern')&& contractsForm.get('contractTaxCode').dirty">Mã số thuế chỉ được chứa kí
+                          tự số</small>
+                      </div>
+                      <div class="col-6">
+
+                        <div class="form-outline">
+                          <label class="form-label" for="emailAddress12">Mã hợp đồng
+                            <span
+                              class="error"> (*)</span></label>
+                          <input type="text" id="emailAddress12"
+                                 class="form-control form-control-lg" formControlName="contractCode"/>
+                        </div>
+                        <small class="error" *ngIf="contractsForm.get('contractCode')
+                        .hasError('required')&& contractsForm.get('contractCode').touched">Mã hợp đồng không được để
+                          trống</small>
+
+                        <small class="error" *ngIf="contractsForm.get('contractCode')
+                        .hasError('pattern')&& contractsForm.get('contractCode').dirty">Mã hợp đồng không hợp lệ :
+                          HD-1233,HD-0123,...</small>
+
+                        <small class="error" *ngIf="checkCode == true">Mã hợp đồng đã tồn tại</small>
+
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="exampleFormControlTextarea1">Nội dung hợp đồng <span
+                            class="error"> (*)</span></label>
+                          <textarea formControlName="contractContent" class="form-control"
+                                    id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <small class="error" *ngIf="contractsForm.get('contractContent')
+                        .hasError('required')&& contractsForm.get('contractContent').touched">Nội dung không được để
+                          trống</small>
+                        <small class="error" *ngIf="contractsForm.get('contractContent')
+                        .hasError('minlength')&& contractsForm.get('contractContent').dirty">Nội dung phải trên 10 kí
+                          tự</small>
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-outline">
+                          <label class="form-label" for="image">Hình ảnh hợp đồng
+                            <span
+                              class="error"> (*)</span></label>
+                          <input type="file" id="image" (change)="showPreview($event)" class="form-control">
+                          <img [src]="url" width="100%" height="200">
+                        </div>
+                        <small class="error" *ngIf="contractsForm.get('contractImageUrl')
+                        .hasError('required')&& contractsForm.get('contractImageUrl').touched">Hình ảnh phải được
+                          chọn</small>
+                      </div>
+                      <div class="col-6"></div>
+                    </div>
+
+
+                    <div class="d-flex justify-content-end pt-3 mt-5">
+                      <button class="add-button button-radius btn-lg ms-2 me-3">Tạo
+                        mới
+                      </button>
+                      <button type="reset" class="reset-button button-radius btn-lg ms-2 me-3">
+                        Đặt lại
+                      </button>
+                      <button type="reset" class="reset-button button-radius btn-lg ms-2 me-3" routerLink="/contract/list">
+                        Đóng
+                      </button>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

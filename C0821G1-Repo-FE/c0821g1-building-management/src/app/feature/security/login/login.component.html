@@ -1,0 +1,74 @@
+<section class=" gradient-form" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0" style="background-color:rgba(214,180,128,0.86)">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+
+                <div class="text-center">
+                  <h4 class="mt-1 mb-5 pb-1" style="font-size: 50px;font-weight: bold;color: #452D14">ĐĂNG NHẬP</h4>
+                </div>
+
+                <form  [formGroup]="loginFrom" (ngSubmit)="onSubmit()">
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example11">Tên Đăng Nhập  <span class="error">(*)</span></label>
+                    <input type="text" id="form2Example11" class="form-control"  formControlName="username"
+                           placeholder="Nhập tên đăng nhập"/>
+                    <p class="fs-6"
+                      style="color: red"
+                      *ngIf="loginFrom.get('username').errors?.required && (loginFrom.get('username').dirty ||loginFrom.get('username').touched)">
+                      Tên đăng nhập không được để trống
+                    </p>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example22">Mật Khẩu <span class="error">(*)</span></label>
+                    <input type="password" id="form2Example22" class="form-control"  formControlName="password"
+                           placeholder="Nhập mật khẩu"/>
+                    <p class="fs-6" style="color: red"
+                       *ngIf="loginFrom.get('password').errors?.required && (loginFrom.get('password').dirty ||loginFrom.get('password').touched)">
+                      Mật khẩu không được để trống
+
+                    </p>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input formControlName="remember_me" type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1" >Ghi nhớ đăng nhập</label>
+                    <p class="fs-6" class="error" *ngIf="errorMessage">Tên Đăng nhập hoặc mật khẩu không đúng</p>
+                  </div>
+
+
+
+                  <div class="padding-button">
+                    <button  class="btn btn-block fa-lg  mb-3  rounded-pill button-color"
+                            type="submit">Đăng Nhập
+                    </button>
+                    &nbsp;
+                    &nbsp;
+                    <button routerLink="" class="btn  btn-block fa-lg  mb-3  rounded-pill button-color"
+                            type="button">Hủy
+                    </button>
+
+                  </div>
+
+
+                </form>
+
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="row align-items-center">
+                <img class="px-3 py-4 p-md-5 align-items-center4" src="../../../../assets/images/LogoHouse.jfif" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

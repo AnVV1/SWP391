@@ -1,0 +1,118 @@
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #a1764a;
+
+  /*!* Chrome 10-25, Safari 5.1-6 *!*/
+  /*background: -webkit-linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1));*/
+
+  /*!* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+  /*background: linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1))*/
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+  top: 13px;
+}
+
+.error {
+  color: red;
+}
+
+.add-button {
+  background-color: #d17d0f;
+  color: white;
+}
+.add-button:hover{
+  background-color: #d6b915;
+  border-color: black;
+}
+.reset-button:hover{
+  background-color: darkslategrey;
+  color: white;
+  border: 1px solid;
+  border-color: black ;
+}
+
+.button-radius {
+  border-radius: 5px;
+}
+
+.edit-button {
+  background-color: #d6b915;
+}
+
+.delete-button {
+  background-color: #de6666;
+  color: white;
+}
+
+.header{
+  margin: 1px;
+  background-color: #3f3836;
+  font-size: 16px;
+  color: white;
+}
+.header .row .col-6 svg{
+  color: #eeb043;
+}
+.menu{
+  text-align: center;
+  margin: 1px;
+}
+.menu .row .link{
+  padding-top: 25px;
+  font-weight: bold;
+  font-size: 15px;
+}
+.menu .row .link a:hover{
+  color:#f9ca24;
+}
+.menu .row .link a{
+  text-decoration: none
+}
+.footer{
+  background-color: #3d3d3d;
+  color: white;
+}
+.footer .container .row .contact{
+  text-align: left;
+}
+.footer .container .row .contact a svg{
+  color: #eeb043;
+  border-style: solid ;
+  border-color: white;
+}
+.gradient-custom {
+  background: #a1764a;
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+  top: 13px;
+}
+
+.error {
+  color: red;
+}
+
+.edit-button {
+  background-color: #d17d0f;
+  color: white;
+}
+
+.button-radius {
+  border-radius: 15px;
+}

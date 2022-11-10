@@ -1,0 +1,211 @@
+<div class="">
+  <div class=" gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center" style="font-size: 50px;font-weight: bold;color: #452D14;padding-top: 60px">Thêm mới nhân viên</h3>
+              <form [formGroup]="employeeCreateForm" (ngSubmit)="saveNewEmployee()">
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+
+                    <div class="form-outline">
+                      <label class="form-label" for="idEmployee">Mã Nhân viên <span class="error">(*)</span></label>
+                      <input type="text" id="idEmployee" class="form-control form-control-lg"
+                             formControlName="employeeCode"/>
+                    </div>
+
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeeCode.hasError('required') && employeeCreateForm.controls.employeeCode.touched">
+                      Mã nhân viên không được để trống.</small>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeeCode.hasError('pattern')">
+                      Mã nhân viên phải có định dạng NV-XXXX.</small>
+
+                  </div>
+                  <div class="col-md-6 mb-4">
+
+                    <div class="form-outline">
+                      <label class="form-label" for="lastName">Họ tên <span class="error">(*)</span></label>
+                      <input type="text" id="lastName" class="form-control form-control-lg"
+                             formControlName="employeeName"/>
+                    </div>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeeName.hasError('required') && employeeCreateForm.controls.employeeName.touched">
+                      Tên nhân viên không được để trống.</small>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeeName.hasError('maxlength')">
+                      Bạn đã nhập quá số kí tự cho phép(40 kí tự).</small>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeeName.hasError('pattern')">Họ và tên không đúng định
+                      dạng.</small>
+
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                    <div class="form-outline datepicker w-100">
+                      <label for="birthdayDate" class="form-label">Ngày sinh</label>
+                      <input
+                        type="date"
+                        class="form-control form-control-lg"
+                        formControlName="employeeDateOfBirth"
+                        id="birthdayDate"
+                      />
+                      <small style="color: red"
+                             *ngIf="employeeCreateForm.controls.employeeDateOfBirth.hasError('required') && employeeCreateForm.controls.employeeCode.touched">
+                        Ngày sinh không được để trống.</small>
+                      <small style="color: red"
+                             *ngIf="employeeCreateForm.controls.employeeDateOfBirth.hasError('under18') ">
+                        Tuổi phải lớn hơn 18.</small>
+                    </div>
+
+
+                  </div>
+                  <div class="col-md-6 mb-4">
+
+                    <div class="form-outline">
+                      <label class="form-label" for="address">Địa chỉ</label>
+                      <input type="email" id="address" class="form-control form-control-lg"
+                             formControlName="employeeAddress"/>
+                    </div>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeeAddress.hasError('required') && employeeCreateForm.controls.employeeCode.touched">
+                      Địa chỉ không được để trống.</small>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeeAddress.hasError('maxlength')">
+                      Bạn đã nhập quá số kí tự cho phép(40 kí tự).</small>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4 pb-2">
+
+                    <div class="form-outline">
+                      <label class="form-label" for="email">Email <span class="error">(*)</span></label>
+                      <input type="email" id="email" class="form-control form-control-lg"
+                             formControlName="employeeEmail"/>
+                    </div>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeeEmail.hasError('required') && employeeCreateForm.controls.employeeEmail.touched">
+                      Email không được để trống.</small>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeeEmail.hasError('pattern')">
+                      Email không đúng định dạng.</small>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeeEmail.hasError('maxlength')">
+                      Bạn đã nhập quá số kí tự cho phép(40 kí tự).</small>
+
+                  </div>
+                  <div class="col-md-6 mb-4 pb-2">
+
+                    <div class="form-outline">
+                      <label class="form-label" for="phoneNumber">Số điện thoại <span class="error">(*)</span></label>
+                      <input type="tel" id="phoneNumber" class="form-control form-control-lg"
+                             formControlName="employeePhone"/>
+                    </div>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeePhone.hasError('required') && employeeCreateForm.controls.employeePhone.touched">
+                      Số điện thoại không được để trống.</small>
+                    <small style="color: red" *ngIf="employeeCreateForm.controls.employeePhone.hasError('pattern') ">
+                      Số điện thoại phaỉ có 10 số
+                      .</small>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4 pb-2">
+
+                    <div class="form-outline">
+                      <label class="form-label" for="dayWork">Ngày làm việc <span class="error">(*)</span></label>
+                      <input type="date" id="dayWork" class="form-control form-control-lg"
+                             formControlName="employeeStartDate"/>
+                    </div>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeeStartDate.hasError('required') && employeeCreateForm.controls.employeeStartDate.touched">
+                      Ngày bắt đầu làm việc không được để trống.</small>
+
+                  </div>
+                  <div class="col-md-6 mb-4 pb-2">
+                    <h6 class="mb-2 pb-1">Giới tính: </h6>
+
+                    <div class="form-check form-check-inline ">
+                      <label class="form-check-label" for="femaleGender">Nữ</label>
+                      <input
+                        class="form-check-input form-control"
+                        type="radio"
+                        name="employeeGender"
+                        id="femaleGender"
+                        value="Nữ"
+                        checked
+                        formControlName="employeeGender"
+                      />
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                      <label class="form-check-label" for="maleGender">Nam</label>
+                      <input
+                        class="form-check-input form-control"
+                        type="radio"
+                        name="employeeGender"
+                        id="maleGender"
+                        value="Nam"
+                        formControlName="employeeGender"
+                      />
+                    </div>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <label class="form-label select-label">Vị trí <span class="error">(*)</span></label>
+                    <br>
+                    <select class="select form-control-lg" formControlName="employeePosition">
+                      <option value=null></option>
+                      <option *ngFor="let positionObj of employeePositionList"
+                              [ngValue]="positionObj">{{positionObj.employeePositionName}}</option>
+                    </select>
+                    <small style="color: red"
+                           *ngIf="employeeCreateForm.controls.employeePosition.hasError('required') && employeeCreateForm.controls.employeePosition.touched">
+                      Vị trí không được để trống.</small>
+                  </div>
+
+                  <div class="col-md-6 mb-4 pb-2">
+
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-outline align-middle">
+                      <label class="form-label" for="phoneNumber">Ảnh đại diện <span class="error">(*)</span></label>
+                      <input type="file" (change)="showPreview($event)" accept="*.png.jpg" id="image"
+                             class="form-control form-control-lg" autocomplete="off"/>
+                      <img class="form-control" [src]="url" alt="">
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <div class="d-flex justify-content-end pt-3 mt-5 ">
+                  <button type="submit"  [disabled]="!employeeCreateForm.valid"
+                          class="add-button button-radius btn-lg ms-2 me-3" style="background-color: #d17d0f">Tạo mới
+                  </button>
+                  <button type="reset" class="reset-button button-radius btn-lg ms-2 me-3">Đặt lại</button>
+                  <button type="button" class="button-radius btn-lg ms-2 me-3" routerLink="/employee/list">Đóng</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="content-container">
+  <div class="container-fluid">
+    <h2 class="text-center  m-5 font-google-2 " style="font-size: 50px;font-weight: bold;color: #452D14 ">Danh Sách Tầng Lầu</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-9">
+          <form>
+            <div class=" search row d-flex justify-content-end align-items-center mb-4 text-right float-right">
+              <div class="col-lg-2 form-group" style="text-align: center">
+                <input id="#" class="form-control" type="text" placeholder="Tên tầng">
+              </div>
+              <div class="col-lg-2 form-group" style="text-align: right">
+                <div style="text-align: center">
+                  <input type="text" class="form-control" placeholder="Diện tích">
+                </div>
+              </div>
+              <div class="col-lg-2 form-group" style="text-align: right">
+                <div style="text-align: center">
+                </div>
+                <div>
+                  <input type="text" class="form-control" placeholder="Loại tầng">
+                </div>
+              </div>
+              <div class="col-lg-2 form-group" style="text-align: right">
+                <input type="text" id="" class="form-control" placeholder="Trạng thái">
+              </div>
+              <div class="col-lg-2 form-group" style="text-align: right">
+                <button class="btn btn-light mt-xl-1 btn-outline-success" style="border-radius: 5px"><i
+                  class="fa-solid fa-magnifying-glass"></i> Tìm Kiếm
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+
+        <table class="table table-hover">
+          <thead class="text-center font-google-1 fs-5 "
+                 style="background-color: #EFB578; white-space: nowrap; overflow: hidden;">
+          <tr style="color: #452D14">
+            <th scope="col">STT</th>
+            <th scope="col">Tên tầng lầu</th>
+            <th scope="col">Mã tầng lầu</th>
+            <th scope="col">Diện tích(m<sup>2</sup>)</th>
+            <th scope="col">Sức chứa</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Loại tầng</th>
+            <th colspan="2">Chức năng</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let floors of floorsList;index as i">
+            <td>
+              {{i + 1}}
+            </td>
+            <td>
+              {{floors.floorName}}
+            </td>
+            <td>
+              {{floors.floorCode}}
+            </td>
+            <td>
+              {{floors.floorArea}}(m<sup>2</sup>)
+            </td>
+            <td>
+              {{floors.floorCapacity}}
+            </td>
+            <td>
+              {{floors.floorsStatus.floorStatusName}}
+            </td>
+            <td>
+              {{floors.floorsType.floorTypeName}}
+            </td>
+            <td>
+<!--              <button type="button" class="btn btn-light me-3 edit-button">-->
+<!--                <i class="fa-solid fa-pen"></i>-->
+<!--              </button>-->
+              <button type="button" class="btn btn-light delete-button " data-toggle="modal"
+                      data-target="#exampleModal"
+                      (click)="openDialog(floors.floorId)">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+              <!--              <button type="button" class="btn btn-light delete-button " data-toggle="modal"-->
+              <!--                      data-target="#exampleModal"-->
+              <!--                      (click)="openDialog(100)">-->
+              <!--                test-->
+              <!--                <i class="fa-solid fa-trash-can"></i>-->
+              <!--              </button>-->
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
